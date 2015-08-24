@@ -1,6 +1,6 @@
 package io.prediction.opennlp.evaluation
 
-import io.prediction.controller.EmptyEvaluationInfo
+import io.prediction.controller.EmptyParams
 import io.prediction.controller.Metric
 import io.prediction.opennlp.engine.PredictedResult
 import io.prediction.opennlp.engine.Query
@@ -11,11 +11,11 @@ import org.apache.spark.rdd.RDD
 import org.apache.spark.SparkContext._
 
 class AccuracyMetric
-  extends Metric[EmptyEvaluationInfo, Query, PredictedResult, Sentiment, Double] {
+  extends Metric[EmptyParams, Query, PredictedResult, Sentiment, Double] {
 
   override def calculate(
     sc: SparkContext,
-    data: Seq[(EmptyEvaluationInfo, RDD[(Query, PredictedResult, Sentiment)])]): Double = {
+    data: Seq[(EmptyParams, RDD[(Query, PredictedResult, Sentiment)])]): Double = {
 
     val accurate = sc.accumulator(0)
     val inaccurate = sc.accumulator(0)

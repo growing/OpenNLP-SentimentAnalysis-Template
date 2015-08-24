@@ -12,7 +12,7 @@ import scala.util.Random
 
 class DataSource(val dsp: DataSourceParams) extends PDataSource[
   TrainingData,
-  EmptyEvaluationInfo,
+  EmptyParams,
   Query,
   Sentiment] {
 
@@ -24,7 +24,7 @@ class DataSource(val dsp: DataSourceParams) extends PDataSource[
   }
 
   override def readEval(
-    sc: SparkContext): Seq[(TrainingData, EmptyEvaluationInfo, RDD[(Query, Sentiment)])] = {
+    sc: SparkContext): Seq[(TrainingData, EmptyParams, RDD[(Query, Sentiment)])] = {
     val shuffled = Random.shuffle(allPhraseAndSentiments(sc))
     val (trainingSet, testingSet) =
       shuffled.splitAt((shuffled.size*0.9).toInt)
@@ -57,4 +57,3 @@ class DataSource(val dsp: DataSourceParams) extends PDataSource[
     TrainingData(dataIndexer)
   }
 }
-
