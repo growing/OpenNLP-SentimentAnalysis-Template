@@ -4,7 +4,7 @@
   "engineFactory": "io.prediction.opennlp.engine.EngineFactory",
   "datasource": {
     "params" : {
-      "appId" : 3,
+      "appId" : 1,
       "cutoff": 2
     }
   },
